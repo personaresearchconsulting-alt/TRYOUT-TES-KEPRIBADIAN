@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRYOUT CAT TES KEPRIBADIAN (TKP DAN SS STS) - PERSONA.RESEARCH.ID</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --prc-blue: #0f172a; --prc-gold: #b45309; }
+        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .brand-gradient { background: linear-gradient(135deg, var(--prc-blue) 0%, #1e293b 100%); }
+        .btn-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
+        .btn-card:hover { transform: translateY(-2px); border-left: 4px solid var(--prc-gold); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        #main-content, #expired-screen { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen" class="min-h-screen flex items-center justify-center p-4 bg-slate-50">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full border-b-8 border-[#b45309]">
+            <div class="text-center mb-8">
+                <div class="bg-slate-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-lock text-white text-2xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800">PERSONA.RESEARCH.ID</h2>
+                <p class="text-sm text-gray-500 mt-1">Akses Terbatas - Silakan Masukkan Password</p>
+            </div>
+            <div class="space-y-4">
+                <input type="password" id="passInput" placeholder="Masukkan Password" 
+                    class="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-slate-800 outline-none transition-all text-center tracking-widest font-bold">
+                <button onclick="checkAuth()" 
+                    class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg active:scale-95">
+                    MASUK KE TRYOUT
+                </button>
+            </div>
+            <p id="errMsg" class="text-red-500 text-sm mt-4 text-center hidden font-semibold">
+                <i class="fas fa-exclamation-circle mr-1"></i> Password salah!
+            </p>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header class="brand-gradient text-white py-10 px-4 border-b-4 border-[#b45309] shadow-lg">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-tight uppercase">
+                    TRYOUT CAT TES KEPRIBADIAN<br>
+                    <span class="text-lg md:text-xl font-normal text-blue-200">(TKP DAN SS STS)</span>
+                </h1>
+                <div class="mt-4 inline-block bg-[#b45309] px-4 py-1 rounded text-xs font-bold tracking-[0.2em]">
+                    PERSONA.RESEARCH.ID
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto py-12 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <a href="tkp4.html" class="btn-card bg-white p-6 rounded-xl shadow-md flex items-center space-x-4">
+                    <div class="bg-blue-100 p-4 rounded-lg text-blue-900">
+                        <i class="fas fa-list-check text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 uppercase">CAT TKP 4</h3>
+                        <p class="text-xs text-gray-500 italic">Tes Karakteristik Pribadi</p>
+                    </div>
+                </a>
+
+                <a href="tkp5.html" class="btn-card bg-white p-6 rounded-xl shadow-md flex items-center space-x-4">
+                    <div class="bg-blue-100 p-4 rounded-lg text-blue-900">
+                        <i class="fas fa-tasks text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 uppercase">CAT TKP 5</h3>
+                        <p class="text-xs text-gray-500 italic">Tes Karakteristik Pribadi</p>
+                    </div>
+                </a>
+
+                <a href="teskepribadian_sssts1.html" class="btn-card bg-white p-6 rounded-xl shadow-md flex items-center space-x-4">
+                    <div class="bg-amber-100 p-4 rounded-lg text-amber-900">
+                        <i class="fas fa-user-gear text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 uppercase">SS-STS 1</h3>
+                        <p class="text-xs text-gray-500 italic">Skala Sikap Psikologis</p>
+                    </div>
+                </a>
+
+                <a href="teskepribadian_sssts2.html" class="btn-card bg-white p-6 rounded-xl shadow-md flex items-center space-x-4">
+                    <div class="bg-amber-100 p-4 rounded-lg text-amber-900">
+                        <i class="fas fa-diagram-project text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 uppercase">SS-STS 2</h3>
+                        <p class="text-xs text-gray-500 italic">Advanced Likert Assessment</p>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="mt-16 text-center border-t border-gray-200 pt-10">
+                <p class="text-gray-600 font-bold mb-4">Butuh Bantuan Teknis?</p>
+                <a href="https://wa.me/6287742515786" 
+                    class="inline-flex items-center bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-3 rounded-full font-bold shadow-lg transition-all transform hover:scale-105">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> 087742515786
+                </a>
+                <div class="mt-10 opacity-50">
+                    <p class="text-[10px] uppercase tracking-widest font-bold text-slate-900">© 2026 Persona Research & Consulting</p>
+                    <p class="text-[9px] mt-1 text-slate-500 uppercase">Akses Berlaku Hingga 01 Juli 2026</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="expired-screen" class="min-h-screen bg-white flex items-center justify-center p-6 text-center">
+        <div class="max-w-md w-full">
+            <div class="text-red-100 text-9xl mb-4 opacity-30">
+                <i class="fas fa-calendar-times"></i>
+            </div>
+            <h2 class="text-2xl font-black text-gray-800 mb-2 uppercase">Masa Akses Selesai</h2>
+            <p class="text-gray-500 mb-8">Maaf, link tryout ini telah kedaluwarsa sesuai ketentuan sistem pada tanggal 1 Juli 2026.</p>
+            <a href="https://wa.me/6287742515786" class="inline-block bg-red-600 text-white px-10 py-4 rounded-xl font-bold shadow-xl">
+                PERPANJANG LISENSI
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Konfigurasi
+        const MASTER_PASSWORD = "persona05";
+        const EXPIRY_DATE = new Date("2026-07-01T23:59:59");
+
+        function checkAuth() {
+            const input = document.getElementById('passInput').value;
+            const error = document.getElementById('errMsg');
+            const today = new Date();
+            
+            if (input === MASTER_PASSWORD) {
+                // Sembunyikan login
+                document.getElementById('login-screen').style.display = 'none';
+
+                // Cek Tanggal Expired
+                if (today > EXPIRY_DATE) {
+                    document.getElementById('expired-screen').style.display = 'flex';
+                } else {
+                    document.getElementById('main-content').style.display = 'block';
+                }
+            } else {
+                // Tampilkan pesan error
+                error.classList.remove('hidden');
+                document.getElementById('passInput').classList.add('border-red-500');
+                
+                // Hilangkan error setelah 2 detik
+                setTimeout(() => {
+                    error.classList.add('hidden');
+                    document.getElementById('passInput').classList.remove('border-red-500');
+                }, 2000);
+            }
+        }
+
+        // Fitur Enter untuk masuk
+        document.getElementById("passInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                checkAuth();
+            }
+        });
+    </script>
+</body>
+</html>
