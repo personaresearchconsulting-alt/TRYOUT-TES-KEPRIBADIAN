@@ -3,55 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TES KEPRIBADIAN SS STS 1 - Persona Research & CONSULTING</title>
+    <title>Advanced Likert Assessment - Persona Research & CONSULTING</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root { --prc: #0f172a; --bg: #f1f5f9; --accent: #1e293b; --gold: #b45309; --success: #15803d; --fail: #b91c1c; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: #1e293b; -webkit-user-select: none; user-select: none; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); color: #1e293b; -webkit-user-select: none; user-select: none; }
         header { background: var(--prc); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--gold); }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         .login-box { max-width: 450px; margin: 80px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: center; }
         .q-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; border-left: 8px solid var(--prc); }
-        .opt { display: flex; align-items: center; padding: 18px; margin: 12px 0; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 500; }
-        .opt.selected { background: #e0f2fe; border-color: #0ea5e9; color: #0369a1; font-weight: bold; }
+        .opt { display: flex; align-items: center; padding: 18px; margin: 12px 0; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: 600; text-align: left; }
+        .opt.selected { background: #e0f2fe; border-color: #0ea5e9; color: #0369a1; }
         .btn { background: var(--prc); color: white; border: none; padding: 14px 28px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-        .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 10px; margin-top: 30px; }
-        .nav-item { height: 40px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 6px; font-size: 13px; cursor: pointer; border: 1px solid #e2e8f0; }
+        .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 10px; margin-top: 30px; }
+        .nav-item { height: 40px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 6px; font-size: 13px; cursor: pointer; border: 1px solid #cbd5e1; font-weight: bold; }
         .nav-item.filled { background: var(--prc); color: white; }
         .nav-item.active { outline: 3px solid #0ea5e9; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 11px; background: white; }
         th, td { padding: 10px; border: 1px solid #e2e8f0; text-align: left; }
-        th { background: #f8fafc; }
+        th { background: #f8fafc; color: var(--prc); }
         .badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 10px; }
         .pass { background: #dcfce7; color: #15803d; }
         .warn { background: #fee2e2; color: #b91c1c; }
         #chart-container { width: 100%; max-width: 500px; margin: 20px auto; }
     </style>
 </head>
-<body oncontextmenu="return false">
+<body oncontextmenu="return false" onkeydown="return (event.keyCode != 123)">
 
     <div id="login-screen">
         <div class="login-box">
-            <h2 style="color:var(--prc)">PERSONA RESEARCH & CONSULTING</h2>
-            <p>Sistem Simulasi Psikologi Tahap I<br><b>Modul: High-Difficulty Likert (50 Butir)</b></p>
-            <input type="text" id="inName" placeholder="Nama Lengkap Peserta" style="width:100%; padding:14px; margin:20px 0; border:2px solid #e2e8f0; border-radius:6px; text-align:center; font-size:16px;">
-            <button class="btn" style="width:100%" onclick="startTest()">MULAI ASESMEN</button>
+            <h2 style="color:var(--prc); margin-top:0;">PERSONA RESEARCH &CONSULTING</h2>
+            <p>Sistem Simulasi CAT KEPRIBADIAN SS STS<br><b>Modul: High-Difficulty Likert (50 Soal)</b></p>
+            <input type="text" id="inName" placeholder="Nama Lengkap Peserta" style="width:100%; padding:14px; margin:20px 0; border:2px solid #e2e8f0; border-radius:6px; text-align:center; font-size:16px; font-weight:bold;">
+            <button class="btn" style="width:100%" onclick="startTest()">MULAI SEKARANG</button>
         </div>
     </div>
 
     <div id="test-screen" style="display:none;">
         <header>
-            <div style="font-weight:800;">PRC - ADVANCED ASSESSMENT</div>
+            <div style="font-weight:800; letter-spacing:1px;">PRC - ADVANCED ASSESSMENT</div>
             <div id="timer" style="font-family:monospace; font-size:24px;">45:00</div>
         </header>
         <div class="container">
             <div class="q-card">
                 <p id="q-meta" style="font-size:11px; color:#64748b; font-weight:700; margin:0"></p>
-                <div id="q-text" style="font-size: 18px; margin: 20px 0; line-height: 1.6; font-weight: 500; text-align: justify;"></div>
+                <div id="q-text" style="font-size: 19px; margin: 20px 0; line-height: 1.6; font-weight: 500; text-align: justify;"></div>
                 <div id="options"></div>
             </div>
             <div style="display:flex; justify-content: space-between; gap:10px;">
@@ -64,184 +64,209 @@
 
     <div id="result-screen" style="display:none;" class="container">
         <div id="pdf-content">
-            <div class="q-card" style="text-align:center;">
-                <h2 style="margin:0; color:var(--prc)">HASIL TES KEPRIBADIAN SS STS</h2>
-                <p id="res-name" style="font-weight:bold; text-transform:uppercase; margin:10px 0;"></p>
+            <div class="q-card" style="text-align:center; border-top: 10px solid var(--prc);">
+                <h2 style="margin:0; color:var(--prc)">HASIL EVALUASI TES </h2>
+                <p id="res-name" style="font-weight:bold; text-transform:uppercase; margin:10px 0; font-size: 1.2em;"></p>
                 <hr>
                 <div id="chart-container"><canvas id="radarChart"></canvas></div>
-                <h1 id="res-score" style="font-size:54px; margin:0; color:var(--prc)">0</h1>
-                <p>Skor Murni (Total 250)</p>
-                <div id="res-status" style="padding:10px; border-radius:8px; display:inline-block; font-weight:800; margin-bottom:20px;"></div>
+                <h1 id="res-score" style="font-size:60px; margin:5px 0; color:var(--prc)">0</h1>
+                <p>Skor Murni (Total Poin)</p>
+                <p>Skor Akhir (Skala 100): <b id="res-akhir">0</b></p>
+                <div id="res-status" style="padding:10px 20px; border-radius:8px; display:inline-block; font-weight:800; margin-bottom:20px; font-size: 1.2em;"></div>
             </div>
 
-            <h3 style="border-left:5px solid var(--gold); padding-left:10px;">REKAPITULASI JAWABAN & EVALUASI</h3>
+            <h3 style="border-left:5px solid var(--gold); padding-left:10px;">REKAPITULASI JAWABAN & ANALISIS</h3>
             <table>
                 <thead>
                     <tr>
                         <th style="width:30px">No</th>
-                        <th>Situasi & Aspek</th>
-                        <th>Jawaban Peserta</th>
-                        <th>Skor</th>
-                        <th>Target Kunci (Skor 5)</th>
+                        <th>Situasi & Dimensi</th>
+                        <th style="width:120px">Jawaban Anda</th>
+                        <th style="width:40px">Skor</th>
+                        <th style="width:120px">Kunci (Skor 5)</th>
                     </tr>
                 </thead>
                 <tbody id="res-table"></tbody>
             </table>
         </div>
-        <button class="btn" style="margin:30px 0; width:100%; background:var(--success)" onclick="downloadPDF()">CETAK LAPORAN PDF</button>
+        <button class="btn" style="margin:30px 0; width:100%; background:var(--success)" onclick="downloadPDF()">DOWNLOAD LAPORAN PDF</button>
     </div>
 
     <script>
+        // INTEGRASI GOOGLE SHEETS BAPAK
         const webAppUrl = "https://script.google.com/macros/s/AKfycbyqaDYQOig31sDQepprdzteruc_j-gY9ZakisHJXs3hLNJsDbc7bkBwdBVqhmud6bSjRg/exec";
         
         const masterBank = [
-            {q:"Saya tetap melaporkan rekan kerja yang memalsukan kuitansi meskipun ia adalah orang yang pernah berjasa besar dalam hidup saya.", t:"f", cat:"Integritas"},
-            {q:"Saya merasa sulit mengendalikan emosi ketika warga merendahkan profesi saya di depan umum.", t:"u", cat:"Sabar"},
-            {q:"Menyimpang sedikit dari SOP tidak masalah bagi saya asalkan pekerjaan selesai dengan cepat.", t:"u", cat:"Patuh"},
-            {q:"Saya akan memilih diam jika melihat senior mengambil barang inventaris kantor demi menjaga solidaritas tim.", t:"u", cat:"Integritas"},
-            {q:"Saya merasa tegang dan sulit berkonsentrasi jika harus mengambil keputusan mendadak di tengah situasi massa yang anarkis.", t:"u", cat:"Mental"},
-            {q:"Saya bersedia meminjamkan uang anggaran unit untuk membantu biaya rumah sakit keluarga rekan saya yang sedang kritis.", t:"u", cat:"Integritas"},
-            {q:"Saya tetap ramah melayani warga meskipun waktu istirahat saya terganggu oleh kehadiran mereka.", t:"f", cat:"Sosial"},
-            {q:"Bagi saya, perintah atasan adalah segalanya, bahkan jika perintah tersebut terasa bertentangan dengan prosedur tertulis.", t:"u", cat:"Patuh"},
-            {q:"Saya merasa puas jika berhasil menyelesaikan tugas tanpa harus selalu bergantung pada arahan senior.", t:"f", cat:"PD"},
-            {q:"Saya tetap menjaga rahasia penyidikan kasus meskipun ditawarkan imbalan materi yang sangat besar oleh media.", t:"f", cat:"Loyalitas"},
-            {q:"Saya merasa tidak nyaman jika harus ditugaskan di lingkungan yang mayoritas budayanya sangat berbeda dengan saya.", t:"u", cat:"Adaptasi"},
-            {q:"Saya akan menegur anggota keluarga jika mereka menggunakan fasilitas kantor untuk kepentingan pribadi mereka.", t:"f", cat:"Integritas"},
-            {q:"Saya cenderung menunda laporan pekerjaan jika merasa pimpinan tidak sedang mengawasi kinerja saya secara langsung.", t:"u", cat:"Disiplin"},
-            {q:"Saya tetap teguh pada aturan meskipun orang-orang di sekitar saya menganggap saya terlalu kaku dan tidak fleksibel.", t:"f", cat:"Patuh"},
-            {q:"Saya merasa lebih aman bekerja di balik meja daripada harus menghadapi risiko konflik fisik di lapangan.", t:"u", cat:"Mental"},
-            {q:"Saya bersedia mengakui kesalahan saya di depan pimpinan meskipun itu berisiko membatalkan promosi jabatan saya.", t:"f", cat:"Jujur"},
-            {q:"Saya akan menggunakan pengaruh jabatan saya untuk membantu kerabat agar mendapatkan kemudahan urusan birokrasi.", t:"u", cat:"Integritas"},
-            {q:"Saya merasa cemas jika ide yang saya sampaikan dalam rapat ditolak atau dikritik oleh rekan sejawat.", t:"u", cat:"PD"},
-            {q:"Saya tetap fokus bekerja dengan maksimal meskipun lingkungan kerja saya penuh dengan isu negatif dan saling menjatuhkan.", t:"f", cat:"Mental"},
-            {q:"Saya akan membantu rekan kerja menyelesaikan tugasnya meskipun tugas saya sendiri belum sepenuhnya selesai.", t:"f", cat:"Sosial"},
-            {q:"Saya merasa tidak perlu belajar teknologi baru karena cara kerja manual sudah cukup efektif selama ini.", t:"u", cat:"Adaptasi"},
-            {q:"Saya tetap datang tepat waktu saat apel pagi meskipun kondisi cuaca sedang hujan sangat lebat.", t:"f", cat:"Disiplin"},
-            {q:"Saya akan meminta izin terlebih dahulu sebelum menggunakan fasilitas dinas untuk keperluan yang bersifat mendesak.", t:"f", cat:"Patuh"},
-            {q:"Saya sering merasa tidak percaya diri saat diminta memimpin kelompok yang anggotanya lebih senior dari saya.", t:"u", cat:"PD"},
-            {q:"Saya tetap bersikap objektif dalam menangani kasus hukum meskipun melibatkan teman dekat saya sendiri.", t:"f", cat:"Jujur"},
-            {q:"Saya merasa lelah jika harus terus-menerus mengikuti perkembangan aturan baru yang dikeluarkan instansi.", t:"u", cat:"Adaptasi"},
-            {q:"Saya lebih suka menghindari perdebatan dengan rekan kerja meskipun saya tahu pendapat mereka salah.", t:"u", cat:"Mental"},
-            {q:"Saya bersedia ditugaskan ke wilayah pelosok Indonesia tanpa membawa keluarga dalam waktu yang lama.", t:"f", cat:"Loyalitas"},
-            {q:"Saya merasa hak saya sebagai anggota lebih penting untuk diperjuangkan daripada kewajiban saya kepada masyarakat.", t:"u", cat:"Loyalitas"},
-            {q:"Saya tetap memberikan pelayanan terbaik kepada warga yang sebelumnya pernah bersikap kasar kepada saya.", t:"f", cat:"Sabar"},
-            {q:"Saya akan mengembalikan uang sisa perjalanan dinas sekecil apapun nilainya kepada bendahara.", t:"f", cat:"Jujur"},
-            {q:"Saya merasa tidak harus bertanggung jawab atas kesalahan tim jika itu bukan akibat langsung dari tindakan saya.", t:"u", cat:"Loyalitas"},
-            {q:"Saya selalu berusaha mencari cara baru yang lebih efisien untuk menyelesaikan pekerjaan saya.", t:"f", cat:"Adaptasi"},
-            {q:"Saya merasa sulit membagi waktu antara hobi pribadi dengan tuntutan pekerjaan yang tidak menentu.", t:"u", cat:"Disiplin"},
-            {q:"Saya akan membela rekan sejawat yang sedang disidang disiplin meskipun saya tahu dia memang bersalah.", t:"u", cat:"Jujur"},
-            {q:"Saya merasa tenang meskipun harus bekerja di bawah tekanan target yang sangat ketat dan terbatas waktu.", t:"f", cat:"Mental"},
-            {q:"Saya sering mengandalkan keberuntungan daripada persiapan yang matang sebelum menghadapi ujian.", t:"u", cat:"PD"},
-            {q:"Saya akan tetap tersenyum melayani meskipun kondisi fisik saya sedang sangat lelah setelah berjaga.", t:"f", cat:"Sabar"},
-            {q:"Saya merasa tidak perlu meminta maaf jika melakukan kesalahan kecil yang tidak diketahui oleh orang lain.", t:"u", cat:"Jujur"},
-            {q:"Saya siap menerima sanksi apapun jika terbukti melanggar kode etik profesi.", t:"f", cat:"Integritas"},
-            {q:"Saya merasa jenuh jika harus mengerjakan tugas administratif yang detail dan berulang-ulang.", t:"u", cat:"Disiplin"},
-            {q:"Saya bersedia mengorbankan waktu libur saya untuk membantu pengamanan kegiatan masyarakat.", t:"f", cat:"Sosial"},
-            {q:"Saya akan menolak pemberian hadiah dari warga sebagai bentuk ucapan terima kasih atas bantuan saya.", t:"f", cat:"Integritas"},
-            {q:"Saya merasa tertantang untuk mempelajari bidang baru yang sebelumnya tidak pernah saya kuasai.", t:"f", cat:"Adaptasi"},
-            {q:"Saya sering merasa iri jika melihat rekan seangkatan mendapatkan fasilitas yang lebih baik dari saya.", t:"u", cat:"Sabar"},
-            {q:"Saya akan tetap mematuhi peraturan lalu lintas meskipun saya sedang berpakaian dinas dan tidak ada petugas razia.", t:"f", cat:"Patuh"},
-            {q:"Saya merasa ragu untuk menegur senior yang bekerja tidak sesuai dengan standar operasional.", t:"u", cat:"Integritas"},
-            {q:"Saya akan berusaha menyelesaikan konflik antar rekan kerja agar suasana kantor tetap kondusif.", t:"f", cat:"Sosial"},
-            {q:"Saya merasa pekerjaan saya saat ini hanyalah sekadar cara untuk mencari nafkah, bukan sebuah pengabdian.", t:"u", cat:"Loyalitas"},
-            {q:"Saya selalu melakukan pengecekan ulang terhadap hasil kerja saya sebelum diserahkan kepada pimpinan.", t:"f", cat:"Disiplin"}
+    // INTEGRITAS VS LOYALITAS
+    {q:"Saya tetap melaporkan manipulasi data yang dilakukan rekan kerja meskipun hal itu akan menghancurkan reputasi tim kami yang sedang berprestasi.", t:"f", cat:"Integritas"},
+    {q:"Menjaga rahasia keburukan atasan adalah bentuk loyalitas yang lebih utama daripada melaporkannya ke pihak berwenang.", t:"u", cat:"Integritas"},
+    {q:"Saya bersedia mengabaikan prosedur kecil demi membantu rekan sejawat yang sedang dalam kesulitan besar.", t:"u", cat:"Integritas"},
+    {q:"Saya akan tetap memberikan kesaksian jujur yang menyudutkan sahabat saya sendiri dalam sidang disiplin instansi.", t:"f", cat:"Integritas"},
+    {q:"Menggunakan koneksi pribadi untuk mempercepat urusan birokrasi adalah hal yang wajar selama tidak merugikan orang lain secara finansial.", t:"u", cat:"Integritas"},
+
+    // MENTAL (TEKANAN & EMOSI)
+    {q:"Saya mampu mengambil keputusan taktis yang berisiko tinggi tanpa harus menunggu persetujuan atasan di tengah situasi massa yang anarkis.", t:"f", cat:"Mental"},
+    {q:"Saya merasa emosi saya mulai tidak stabil ketika dikritik secara kasar oleh masyarakat di depan umum.", t:"u", cat:"Mental"},
+    {q:"Saya tetap bisa berkonsentrasi penuh pada detail pekerjaan teknis meskipun sedang berada dalam ancaman mutasi jabatan.", t:"f", cat:"Mental"},
+    {q:"Menghadapi konflik fisik di lapangan jauh lebih mencemaskan bagi saya daripada mengerjakan tugas administratif di kantor.", t:"u", cat:"Mental"},
+    {q:"Saya tetap tenang dan logis saat diminta mempertanggungjawabkan kegagalan tugas di depan pimpinan tinggi.", t:"f", cat:"Mental"},
+
+    // ADAPTASI & INOVASI
+    {q:"Saya merasa terbebani jika instansi terus-menerus mengubah aplikasi sistem kerja yang sudah saya kuasai dengan baik.", t:"u", cat:"Adaptasi"},
+    {q:"Saya lebih memilih ditugaskan di wilayah baru yang belum memiliki sistem kerja mapan agar saya bisa berkreasi dari awal.", t:"f", cat:"Adaptasi"},
+    {q:"Belajar teknologi baru di usia saat ini terasa kurang efektif dibandingkan memaksimalkan cara kerja konvensional.", t:"u", cat:"Adaptasi"},
+    {q:"Saya tetap produktif meskipun harus bekerja dengan tim yang memiliki latar belakang budaya dan keyakinan yang sangat kontras dengan saya.", t:"f", cat:"Adaptasi"},
+    {q:"Saya merasa jenuh dan kehilangan motivasi jika harus menetap di satu posisi jabatan selama lebih dari dua tahun.", t:"f", cat:"Adaptasi"},
+
+    // DISIPLIN & KEPATUHAN
+    {q:"Saya akan tetap menaati aturan jam kantor dengan ketat meskipun pimpinan saya sendiri sering datang terlambat.", t:"f", cat:"Disiplin"},
+    {q:"Jika hasil akhir pekerjaan sudah dianggap sempurna oleh pimpinan, maka kepatuhan terhadap SOP selama proses pengerjaan bisa sedikit dilonggarkan.", t:"u", cat:"Disiplin"},
+    {q:"Saya akan menegur senior yang tidak menggunakan seragam lengkap sesuai aturan, meskipun saya adalah bawahan mereka.", t:"f", cat:"Disiplin"},
+    {q:"Saya merasa tidak perlu melaporkan kesalahan kecil dalam laporan jika kesalahan tersebut tidak mempengaruhi hasil evaluasi akhir.", t:"u", cat:"Disiplin"},
+    {q:"Saya tetap menyelesaikan tugas hingga tuntas di kantor meskipun jam dinas sudah berakhir dan rekan lain sudah pulang.", t:"f", cat:"Disiplin"},
+
+    // SOSIAL & PELAYANAN
+    {q:"Saya akan memprioritaskan membantu rekan kerja yang tertinggal tugasnya meskipun target pribadi saya juga sangat mendesak.", t:"f", cat:"Sosial"},
+    {q:"Pelayanan publik harus dihentikan tepat waktu sesuai jam operasional, meskipun masih ada warga yang datang dari tempat jauh.", t:"u", cat:"Sosial"},
+    {q:"Saya merasa sulit untuk bersikap ramah kepada warga yang merendahkan martabat institusi saya saat sedang dilayani.", t:"u", cat:"Sosial"},
+    {q:"Saya bersedia menggunakan waktu libur saya untuk melakukan mediasi konflik warga tanpa mengharapkan upah lembur.", t:"f", cat:"Sosial"},
+    {q:"Membangun hubungan akrab dengan rekan kerja jauh lebih penting bagi saya daripada sekadar bersikap profesional secara kaku.", t:"f", cat:"Sosial"},
+
+    // KEJUJURAN & TANGGUNG JAWAB
+    {q:"Saya akan mengakui secara terbuka bahwa kegagalan koordinasi tim adalah kesalahan saya sebagai anggota.", t:"f", cat:"Jujur"},
+    {q:"Menyembunyikan sedikit fakta negatif dalam laporan kinerja demi menjaga stabilitas organisasi adalah tindakan yang bijaksana.", t:"u", cat:"Jujur"},
+    {q:"Saya segera mengembalikan kelebihan uang perjalanan dinas meskipun bendahara tidak menyadari adanya kesalahan hitung.", t:"f", cat:"Jujur"},
+    {q:"Saya merasa berhak menggunakan sisa anggaran proyek untuk keperluan tim sebagai bentuk penghargaan atas kerja keras kami.", t:"u", cat:"Jujur"},
+    {q:"Saya tidak akan memalsukan tanda tangan pimpinan meskipun untuk urusan surat-menyurat yang sangat mendesak.", t:"f", cat:"Jujur"},
+
+    // PENGENDALIAN DIRI (SABAR)
+    {q:"Saya tetap tenang saat dituduh melakukan kesalahan yang sebenarnya dilakukan oleh orang lain demi menjaga suasana kerja tetap kondusif.", t:"f", cat:"Sabar"},
+    {q:"Saya merasa tersinggung jika ide saya dalam rapat didebat oleh rekan yang secara kepangkatan berada di bawah saya.", t:"u", cat:"Sabar"},
+    {q:"Menghadapi atasan yang sering marah tanpa alasan yang jelas adalah bagian dari dinamika kerja yang bisa saya terima dengan lapang dada.", t:"f", cat:"Sabar"},
+    {q:"Saya cenderung membalas dengan nada ketus jika ada rekan yang berbicara tidak sopan kepada saya.", t:"u", cat:"Sabar"},
+    {q:"Saya tetap mampu memberikan senyum tulus kepada tamu kantor meskipun saya baru saja mengalami kejadian buruk di rumah.", t:"f", cat:"Sabar"},
+
+    // PERCAYA DIRI (PD)
+    {q:"Saya merasa yakin bisa memimpin unit kerja yang anggotanya memiliki pengalaman jauh lebih senior dari saya.", t:"f", cat:"PD"},
+    {q:"Saya sering merasa ragu untuk mengambil keputusan penting jika tidak ada teman sejawat yang mendampingi saya.", t:"u", cat:"PD"},
+    {q:"Saya berani menyampaikan pendapat yang berbeda dengan mayoritas peserta rapat demi kebenaran prosedur.", t:"f", cat:"PD"},
+    {q:"Saya merasa rendah diri jika harus berkoordinasi dengan pejabat dari instansi yang lebih besar.", t:"u", cat:"PD"},
+    {q:"Saya siap menerima tanggung jawab sebagai komandan tugas meskipun persiapan yang diberikan sangat mendadak.", t:"f", cat:"PD"},
+
+    // LOYALITAS (PENGABDIAN)
+    {q:"Saya bersedia membatalkan cuti tahunan demi membantu pengamanan kegiatan nasional yang mendesak.", t:"f", cat:"Loyalitas"},
+    {q:"Pekerjaan ini hanyalah batu loncatan bagi saya untuk mendapatkan posisi yang lebih baik di tempat lain.", t:"u", cat:"Loyalitas"},
+    {q:"Saya akan membela nama baik instansi saya di media sosial meskipun saya sendiri sedang memiliki keluhan terhadap kebijakan internal.", t:"f", cat:"Loyalitas"},
+    {q:"Tuntutan pengabdian kepada negara tidak seharusnya mengganggu kualitas waktu saya bersama keluarga.", t:"u", cat:"Loyalitas"},
+    {q:"Saya tetap memberikan kinerja 100% meskipun saya tahu saya tidak akan mendapatkan promosi tahun ini.", t:"f", cat:"Loyalitas"},
+
+    // PENALARAN LOGIS & OBJEKTIF
+    {q:"Saya akan tetap memproses hukum kerabat dekat saya sendiri jika ia terbukti melakukan pelanggaran berat.", t:"f", cat:"Integritas"},
+    {q:"Kedekatan emosional dengan rekan kerja seringkali mempengaruhi cara saya dalam memberikan penilaian kinerja.", t:"u", cat:"Jujur"},
+    {q:"Saya menolak menerima saran dari orang luar yang tidak memahami kondisi internal instansi saya.", t:"u", cat:"Adaptasi"},
+    {q:"Saya selalu melakukan cross-check informasi sebelum mempercayai isu yang beredar di grup WhatsApp kantor.", t:"f", cat:"Mental"},
+    {q:"Saya merasa bahwa aturan ada untuk dipatuhi secara buta tanpa perlu mempertimbangkan situasi lapangan yang ada.", t:"u", cat:"Patuh"}
         ];
 
-        let db = [], ans = {}, cur = 0, time = 45 * 60;
-        const lMap = {5:"Sangat Setuju", 4:"Setuju", 3:"Ragu-Ragu", 2:"Tidak Setuju", 1:"Sangat Tidak Setuju"};
+        let database = [], userAnswers = {}, currentIdx = 0, timeLeft = 45 * 60;
+        const likertMap = {5:"Sangat Setuju", 4:"Setuju", 3:"Ragu-Ragu", 2:"Tidak Setuju", 1:"Sangat Tidak Setuju"};
 
         function startTest() {
-            const n = document.getElementById('inName').value;
-            if(n.length < 3) return alert("Nama lengkap minimal 3 karakter!");
-            db = [...masterBank].sort(() => Math.random() - 0.5);
+            const name = document.getElementById('inName').value.trim();
+            if(name.length < 3) return alert("Harap masukkan nama lengkap minimal 3 karakter!");
+            database = [...masterBank].sort(() => Math.random() - 0.5);
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('test-screen').style.display = 'block';
-            initNav(); show(); startTimer();
+            initNav(); 
+            showSoal(); 
+            startTimer();
         }
 
         function startTimer() {
             const timerIntv = setInterval(() => {
-                if(time <= 0) { clearInterval(timerIntv); finish(); }
-                time--;
-                let m = Math.floor(time/60), s = time%60;
+                if(timeLeft <= 0) { clearInterval(timerIntv); finish(); }
+                timeLeft--;
+                let m = Math.floor(timeLeft/60), s = timeLeft%60;
                 document.getElementById('timer').innerText = `${m}:${s<10?'0'+s:s}`;
             }, 1000);
         }
 
         function initNav() {
-            const g = document.getElementById('nav-grid');
-            db.forEach((_,i) => {
-                const d = document.createElement('div');
-                d.className = 'nav-item'; d.id = `nav-${i}`; d.innerText = i+1;
-                d.onclick = () => { cur = i; show(); };
-                g.appendChild(d);
+            const grid = document.getElementById('nav-grid');
+            grid.innerHTML = "";
+            database.forEach((_, i) => {
+                const item = document.createElement('div');
+                item.className = 'nav-item'; item.id = `nav-${i}`; item.innerText = i + 1;
+                item.onclick = () => { currentIdx = i; showSoal(); };
+                grid.appendChild(item);
             });
         }
 
-        function show() {
-            const s = db[cur];
-            document.getElementById('q-meta').innerText = `DIMENSI: ${s.cat.toUpperCase()} | NOMOR ${cur+1} DARI ${db.length}`;
+        function showSoal() {
+            const s = database[currentIdx];
+            document.getElementById('q-meta').innerText = `DIMENSI: ${s.cat.toUpperCase()} | BUTIR ${currentIdx+1}/${database.length}`;
             document.getElementById('q-text').innerText = s.q;
-            let h = "";
+            let html = "";
             [5,4,3,2,1].forEach(v => {
-                const sel = ans[cur] === v ? 'selected' : '';
-                h += `<div class="opt ${sel}" onclick="hit(${v})">${lMap[v]}</div>`;
+                const sel = userAnswers[currentIdx] === v ? 'selected' : '';
+                html += `<div class="opt ${sel}" onclick="select(${v})">${likertMap[v]}</div>`;
             });
-            document.getElementById('options').innerHTML = h;
+            document.getElementById('options').innerHTML = html;
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById(`nav-${cur}`).classList.add('active');
+            document.getElementById(`nav-${currentIdx}`).classList.add('active');
             window.scrollTo(0,0);
         }
 
-        function hit(v) {
-            ans[cur] = v;
-            document.getElementById(`nav-${cur}`).classList.add('filled');
-            show();
-            if(cur < db.length - 1) setTimeout(() => nav(1), 150);
+        function select(val) {
+            userAnswers[currentIdx] = val;
+            document.getElementById(`nav-${currentIdx}`).classList.add('filled');
+            showSoal();
+            if(currentIdx < database.length - 1) setTimeout(() => nav(1), 150);
         }
 
         function nav(d) {
-            if(d === 1 && cur === db.length - 1) return finish();
-            cur += d; if(cur < 0) cur = 0; show();
+            if(d === 1 && currentIdx === database.length - 1) return finish();
+            currentIdx += d; if(currentIdx < 0) currentIdx = 0; showSoal();
         }
 
         function finish() {
-            if(Object.keys(ans).length < db.length) {
-                if(!confirm("Beberapa soal belum dijawab. Yakin kirim?")) return;
-            } else {
-                if(!confirm("Kirim hasil sekarang?")) return;
-            }
-
+            if(!confirm("Kirim jawaban sekarang?")) return;
+            
             let total = 0, html = "", catScores = {}, catCounts = {};
-            db.forEach((s, i) => {
-                const u = ans[i] || 0;
-                let sVal = s.t === "f" ? u : (u === 0 ? 0 : 6 - u);
-                total += sVal;
+            database.forEach((s, i) => {
+                const val = userAnswers[i] || 0;
+                let poin = s.t === "f" ? val : (val === 0 ? 0 : 6 - val);
+                total += poin;
                 
-                catScores[s.cat] = (catScores[s.cat] || 0) + sVal;
+                catScores[s.cat] = (catScores[s.cat] || 0) + poin;
                 catCounts[s.cat] = (catCounts[s.cat] || 0) + 1;
 
                 const kunci = s.t === "f" ? "Sangat Setuju" : "Sangat Tidak Setuju";
-                const badge = sVal >= 4 ? 'pass' : 'warn';
+                const badgeClass = poin >= 4 ? 'pass' : 'warn';
 
                 html += `<tr>
                     <td>${i+1}</td>
                     <td><b>[${s.cat}]</b><br>${s.q}</td>
-                    <td>${lMap[u] || '-'}</td>
-                    <td><span class="badge ${badge}">${sVal}</span></td>
+                    <td>${likertMap[val] || '-'}</td>
+                    <td><span class="badge ${badgeClass}">${poin}</span></td>
                     <td style="color:#0369a1; font-weight:bold">${kunci}</td>
                 </tr>`;
             });
 
-            document.getElementById('res-name').innerText = "PESERTA: " + document.getElementById('inName').value;
+            const maxPoin = database.length * 5;
+            const akhir = ((total / maxPoin) * 100).toFixed(2);
+            const nama = document.getElementById('inName').value;
+
+            document.getElementById('res-name').innerText = "NAMA: " + nama;
             document.getElementById('res-score').innerText = total;
+            document.getElementById('res-akhir').innerText = akhir;
             document.getElementById('res-table').innerHTML = html;
 
             const st = document.getElementById('res-status');
             if(total >= 150) { st.innerText = "CUKUP MEMAHAMI MATERI"; st.style.background = "#dcfce7"; st.style.color = "#15803d"; }
-            else { st.innerText = "KURANG MEMAHAMI MATERI"; st.style.background = "#fee2e2"; st.style.color = "#b91c1c"; }
+            else { st.innerText = "TINGKATKAN LAGI PEMAHAMAN MATERI"; st.style.background = "#fee2e2"; st.style.color = "#b91c1c"; }
 
-            // Create Radar Chart
+            // Radar Chart Logic
             const ctx = document.getElementById('radarChart').getContext('2d');
             const labels = Object.keys(catScores);
             const dataVals = labels.map(l => (catScores[l]/catCounts[l]).toFixed(2));
@@ -251,7 +276,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Profil HASIL TES KEPRIBADIAN',
+                        label: 'Profil Psikologis',
                         data: dataVals,
                         backgroundColor: 'rgba(15, 23, 42, 0.2)',
                         borderColor: '#0f172a',
@@ -261,24 +286,31 @@
                 options: { scales: { r: { min: 0, max: 5 } } }
             });
 
-            // Kirim ke Google Sheets
+            // INTEGRASI GOOGLE SHEETS
             const fd = new FormData();
-            fd.append("nama", document.getElementById('inName').value);
-            fd.append("skor", total);
-            fetch(webAppUrl, { method: "POST", mode: "no-cors", body: fd });
+            fd.append("nama", nama);
+            fd.append("skorMurni", total);
+            fd.append("skorAkhir", akhir);
+            
+            fetch(webAppUrl, { method: "POST", mode: "no-cors", body: fd })
+            .then(() => console.log("Data Terkirim"))
+            .catch(e => console.error("Gagal Kirim:", e));
 
             document.getElementById('test-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'block';
+            window.scrollTo(0,0);
         }
 
         function downloadPDF() {
-            const el = document.getElementById('pdf-content');
-            html2pdf().from(el).set({
+            const element = document.getElementById('pdf-content');
+            const opt = {
                 margin: 5,
-                filename: `PRC_LIKERT_${document.getElementById('inName').value}.pdf`,
+                filename: `Hasil_Psikologi_${document.getElementById('inName').value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            }).save();
+            };
+            html2pdf().from(element).set(opt).save();
         }
     </script>
 </body>
